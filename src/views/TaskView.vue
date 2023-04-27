@@ -9,25 +9,16 @@
         @keyup.enter="addTask"
       ></v-text-field>
     </v-col>
-    <v-list flat subheader>
-      <v-subheader>General</v-subheader>
-
-      <v-list-item-group v-model="settings" multiple active-class="">
-        <task-component
-          v-for="task in $store.state.tasks"
-          :key="task.id" :task="task"
-        ></task-component>
-      </v-list-item-group>
-    </v-list>
+    <TasksList/>
   </div>
 </template>
 
 <script>
-import TaskComponent from "../components/tasks/TaskComponent.vue";
+import TasksList from "../components/tasks/TasksList.vue";
 
 export default {
   components: {
-    TaskComponent,
+    TasksList
   },
 
   name: "HomeView",
