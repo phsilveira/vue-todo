@@ -55,12 +55,6 @@ export default {
       ],
     };
   },
-  methods: {
-    teste(){
-      console.log('teste')
-      this.items[0].modal = false
-    }
-  },
 };
 </script>
 <style></style>
