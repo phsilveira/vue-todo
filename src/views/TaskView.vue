@@ -41,9 +41,13 @@ export default {
     };
   },
 
+  created() {
+    this.$store.commit("fetchTasks");
+  },
+
   methods: {
     addTask() {
-      this.$store.commit("addTask", this.inputField);
+      this.$store.dispatch("addTask", this.inputField);
       this.inputField = "";
     },
   },
