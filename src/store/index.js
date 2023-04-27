@@ -1,30 +1,38 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import Localbase from 'localbase'
+
+let db = new Localbase('db')
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
     tasks:[
-      {
-        id: 1,
-        name: "Comprar pizza",
-        is_done: false,
-      },
-      {
-        id: 2,
-        name: "Lavar roupa",
-        is_done: true,
-      },
+      // {
+      //   id: 1,
+      //   name: "Comprar pizza",
+      //   is_done: false,
+      // },
+      // {
+      //   id: 2,
+      //   name: "Lavar roupa",
+      //   is_done: true,
+      // },
     ]
   },
   getters: {
   },
   mutations: {
+    fetchTasks(state){
+      db.collection('tasks').get().then(tasksDB => {
+        state.tasks = tasksDB
+      })
+    },
     addTask(state, name){
       if (name != "") {
-        state.tasks.push({
-          id: state.tasks.length + 1,
+        db.collection('tasks').add({
+          id: new Date().getTime(),
           name: name,
           is_done: false,
         });
@@ -40,6 +48,10 @@ export default new Vuex.Store({
     },
   },
   actions: {
+    async addTask(commit, name){
+      await commit.commit('addTask', name);
+      await commit.commit('fetchTasks');
+    }
   },
   modules: {
   }
