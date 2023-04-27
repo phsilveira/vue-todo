@@ -3,7 +3,7 @@
   <div>
     <v-list-item
       :class="task.is_done ? 'grey lighten-3' : ''"
-      @click="task.is_done = !task.is_done"
+      @click="$store.dispatch('checkTask', task)"
     >
       <template v-slot:default="{}">
         <v-list-item-action>

@@ -1,12 +1,22 @@
 <template>
   <v-app id="inspire">
     <v-navigation-drawer v-model="drawer" app>
-      <v-list-item>
-        <v-list-item-content>
-          <v-list-item-title class="text-h6"> Vue.js </v-list-item-title>
-          <v-list-item-subtitle> Lista de tarefas </v-list-item-subtitle>
-        </v-list-item-content>
-      </v-list-item>
+      <v-img
+        src="https://picsum.photos/1920/1080?random"
+        gradient="to top right, rgba(19,84,122,.5), rgba(128,208,199,.8)"
+        dark
+        class="pt-4 text-center"
+      >
+        <v-avatar size="75">
+          <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John" />
+        </v-avatar>
+        <v-list-item>
+          <v-list-item-content>
+            <v-list-item-title class="text-h6"> Vue.js </v-list-item-title>
+            <v-list-item-subtitle> Lista de tarefas </v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
+      </v-img>
 
       <v-divider></v-divider>
 
@@ -43,17 +53,6 @@
 
       <v-spacer></v-spacer>
 
-      <v-btn icon>
-        <v-icon>mdi-magnify</v-icon>
-      </v-btn>
-
-      <v-btn icon>
-        <v-icon>mdi-heart</v-icon>
-      </v-btn>
-
-      <v-btn icon>
-        <v-icon>mdi-dots-vertical</v-icon>
-      </v-btn>
     </v-app-bar>
 
     <v-main>
@@ -64,7 +63,6 @@
 
 <script>
 export default {
-  
   data() {
     return {
       drawer: null,
