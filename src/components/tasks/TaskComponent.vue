@@ -17,27 +17,8 @@
           >
         </v-list-item-content>
         <v-list-item-action>
-          <v-btn icon @click.stop="" @click="confirmAction = true">
-            <v-icon color="red lighten-1">mdi-delete-outline</v-icon>
-          </v-btn>
+          <TaskMenu :task="task"/>
         </v-list-item-action>
-        <v-dialog v-model="confirmAction" persistent max-width="500px">
-          <v-card>
-            <v-card-title class="headline">Confirm Action</v-card-title>
-            <v-card-text
-              >Are you sure you want to perform this action?</v-card-text
-            >
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn color="error" text @click="confirmAction = false"
-                >Cancel</v-btn
-              >
-              <v-btn color="success" text @click="performActionAndCloseDialog"
-                >Confirm</v-btn
-              >
-            </v-card-actions>
-          </v-card>
-        </v-dialog>
       </template>
     </v-list-item>
     <v-divider></v-divider>
@@ -45,7 +26,10 @@
 </template>
 
 <script>
+import TaskMenu from './TaskMenu.vue';
+
 export default {
+  components: {TaskMenu},
   name: "TaskComponent",
   props: ["task"],
   data() {

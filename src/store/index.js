@@ -31,8 +31,13 @@ export default new Vuex.Store({
       }
     },
     deleteTask(state, id){
+      console.log(id)
       state.tasks = state.tasks.filter(task => task.id != id);
-    }
+    },
+    editTask(state, newTask){
+      let task = state.tasks.filter(tasks => tasks.id == newTask.id)[0];
+      task.name = newTask.name;
+    },
   },
   actions: {
   },
