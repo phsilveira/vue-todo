@@ -37,7 +37,7 @@ export default {
   },
   methods: {
     handleEdit() {
-      this.$store.commit('editTask', { name: this.name, id: this.task.id})
+      this.$store.dispatch('editTask', { name: this.name, id: this.task.id})
       this.$emit('closeModal')
     },
   },

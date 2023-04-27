@@ -43,14 +43,27 @@ export default new Vuex.Store({
       state.tasks = state.tasks.filter(task => task.id != id);
     },
     editTask(state, newTask){
-      let task = state.tasks.filter(tasks => tasks.id == newTask.id)[0];
-      task.name = newTask.name;
+      db.collection('tasks').doc({id: newTask.id}).update({
+        name: newTask.name
+      })
     },
   },
   actions: {
     async addTask(commit, name){
       await commit.commit('addTask', name);
       await commit.commit('fetchTasks');
+    },
+    editTask(commit, newTask){
+      db.collection('tasks').doc({id: newTask.id}).update({
+        name: newTask.name
+      }).then(()=>{
+        commit.commit('fetchTasks');
+      })
+    },
+    deleteTask(commit, id){
+      db.collection('tasks').doc({id: id}).delete().then(()=>{
+        commit.commit('fetchTasks');
+      })
     }
   },
   modules: {
